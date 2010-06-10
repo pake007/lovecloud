@@ -1,0 +1,9 @@
+
+
+- f.input_field_set do
+  = f.input :title
+  = f.input :body, :hint => "<a href='http://hobix.com/textile/quick.html'>Textile enabled</a>. Use Ctrl+E to switch between preview and edit mode."
+  = f.input :tag_list, :as => 'string', :required => false, :hint => 'Comma separated: ruby, rails&hellip;'
+  = f.input :published_at, :label => 'Published at', :as => 'string', :hint => 'Example: now, yesterday, 1 hour from now, ' + link_to("more&hellip;", "http://chronic.rubyforge.org/")
+  = f.input :slug, :hint => "Leave blank for an auto-generated slug based on the title."
+  = f.input :minor_edit, :as => 'boolean', :hint => 'Minor edits will not show up as refreshed in feed readers. Use this to fix spelling mistakes and the like.' unless @post.new_record?

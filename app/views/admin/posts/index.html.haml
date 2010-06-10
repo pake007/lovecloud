@@ -1,0 +1,22 @@
+- content_for(:head) do
+  = javascript_include_tag('admin/posts.js')
+%h1 Your posts
+%table{:cellpadding => "0", :cellspacing => "0"}
+  %thead
+    %tr
+      %th Published At
+      %th Title
+      %th Excerpt
+      %th Comments
+      %th Actions
+  %tbody
+    - if @posts.empty?
+      %tr
+        %td{:colspan => "5"} There are no posts at this time.
+    - else
+      = render :partial => 'post', :collection => @posts
+  %tfoot
+    - if @posts.total_pages > 1
+      %tr.pagination
+        %td{:colspan => "5"}
+          = will_paginate(@posts, :previous_label => '« Newer', :next_label => 'Older »')
